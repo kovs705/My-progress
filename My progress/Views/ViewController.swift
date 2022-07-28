@@ -23,7 +23,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let displayHeight: CGFloat = self.view.frame.height
         
         progressTV.frame = CGRect(x: 0, y: displayHeight, width: displayWidth, height: displayHeight - barHeight)
-        progressTV.register(UITableViewCell.self, forCellReuseIdentifier: "progressCell")
+        progressTV.register(progressTVC.self, forCellReuseIdentifier: "progressCell")
+        progressTV.rowHeight = 150
+        progressTV.tableFooterView = UIView()
+        
         progressTV.dataSource = self
         progressTV.delegate = self
         
@@ -38,12 +41,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let progress = self.progressObjects[indexPath.row]
         
-        let cell = progressTV.dequeueReusableCell(withIdentifier: "progressCell", for: indexPath) // as! Swift.file
+        let cell = progressTV.dequeueReusableCell(withIdentifier: "progressCell", for: indexPath) as! progressTVC
         // give values here..
+        cell.progressName.text = progress.value(forKey: "name") as? String ?? "unknown progress"
         
         cell.contentView.translatesAutoresizingMaskIntoConstraints = false
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func fetchData() {

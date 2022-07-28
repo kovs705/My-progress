@@ -17,6 +17,8 @@
 		4EBC0F6928933BF4005A622D /* My_progressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F6828933BF4005A622D /* My_progressTests.swift */; };
 		4EBC0F7328933BF4005A622D /* My_progressUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F7228933BF4005A622D /* My_progressUITests.swift */; };
 		4EBC0F7528933BF4005A622D /* My_progressUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F7428933BF4005A622D /* My_progressUITestsLaunchTests.swift */; };
+		4EBC0F8328934083005A622D /* Progress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F8128934083005A622D /* Progress+CoreDataClass.swift */; };
+		4EBC0F8428934083005A622D /* Progress+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F8228934083005A622D /* Progress+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		4EBC0F6E28933BF4005A622D /* My progressUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My progressUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBC0F7228933BF4005A622D /* My_progressUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_progressUITests.swift; sourceTree = "<group>"; };
 		4EBC0F7428933BF4005A622D /* My_progressUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_progressUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4EBC0F8128934083005A622D /* Progress+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Progress+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4EBC0F8228934083005A622D /* Progress+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Progress+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +112,7 @@
 				4EBC0F5A28933BF4005A622D /* Assets.xcassets */,
 				4EBC0F5C28933BF4005A622D /* LaunchScreen.storyboard */,
 				4EBC0F5F28933BF4005A622D /* Info.plist */,
-				4EBC0F5728933BF1005A622D /* My_progress.xcdatamodeld */,
+				4EBC0F8528934089005A622D /* Progress */,
 			);
 			path = "My progress";
 			sourceTree = "<group>";
@@ -128,6 +132,16 @@
 				4EBC0F7428933BF4005A622D /* My_progressUITestsLaunchTests.swift */,
 			);
 			path = "My progressUITests";
+			sourceTree = "<group>";
+		};
+		4EBC0F8528934089005A622D /* Progress */ = {
+			isa = PBXGroup;
+			children = (
+				4EBC0F8128934083005A622D /* Progress+CoreDataClass.swift */,
+				4EBC0F8228934083005A622D /* Progress+CoreDataProperties.swift */,
+				4EBC0F5728933BF1005A622D /* My_progress.xcdatamodeld */,
+			);
+			path = Progress;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,6 +279,8 @@
 				4EBC0F4F28933BF1005A622D /* AppDelegate.swift in Sources */,
 				4EBC0F5928933BF1005A622D /* My_progress.xcdatamodeld in Sources */,
 				4EBC0F5128933BF1005A622D /* SceneDelegate.swift in Sources */,
+				4EBC0F8428934083005A622D /* Progress+CoreDataProperties.swift in Sources */,
+				4EBC0F8328934083005A622D /* Progress+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0DAF5A289410B100DDA594 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0DAF59289410B100DDA594 /* SnapKit */; };
 		4E60C34528934A32004E3E77 /* progressTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60C34428934A32004E3E77 /* progressTVC.swift */; };
 		4EBC0F4F28933BF1005A622D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F4E28933BF1005A622D /* AppDelegate.swift */; };
 		4EBC0F5128933BF1005A622D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F5028933BF1005A622D /* SceneDelegate.swift */; };
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E0DAF5A289410B100DDA594 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +181,9 @@
 			dependencies = (
 			);
 			name = "My progress";
+			packageProductDependencies = (
+				4E0DAF59289410B100DDA594 /* SnapKit */,
+			);
 			productName = "My progress";
 			productReference = 4EBC0F4B28933BF1005A622D /* My progress.app */;
 			productType = "com.apple.product-type.application";
@@ -251,6 +256,9 @@
 				Base,
 			);
 			mainGroup = 4EBC0F4228933BF1005A622D;
+			packageReferences = (
+				4E0DAF58289410B100DDA594 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 4EBC0F4C28933BF1005A622D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -642,6 +650,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4E0DAF58289410B100DDA594 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4E0DAF59289410B100DDA594 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4E0DAF58289410B100DDA594 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4EBC0F5728933BF1005A622D /* My_progress.xcdatamodeld */ = {

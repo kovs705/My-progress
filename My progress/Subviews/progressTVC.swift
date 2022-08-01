@@ -20,19 +20,21 @@ class progressTVC: UITableViewCell {
         progressName.translatesAutoresizingMaskIntoConstraints = false
         progressName.font = UIFont.systemFont(ofSize: 20)
         
-        contentView.addSubview(progressName)
+        // contentView.addSubview(progressName)
+        addSubview(progressName)
+        addSubview(progress)
         
-        progress.snp.makeConstraints { (make) -> Void in
-            make.bottom.right.equalTo(20)
-            // - make a left constraint for the name of the progress..
-            make.width.equalTo(100)
-            make.height.equalTo(100)
-        }
+//        progress.snp.makeConstraints { (make) -> Void in
+//            make.bottom.right.top.equalTo(20)
+//            // - make a left constraint for the name of the progress..
+//            make.width.equalTo(100)
+//            make.height.equalTo(100)
+//        }
         
         progressName.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(20)
+            //make.left.equalTo(20)
             make.height.equalTo(100)
-            make.right.bottom.equalTo(progress.snp.left).offset(-20)
+            make.left.top.bottom.right.equalTo(20)
         }
         
 ///        NSLayoutConstraint.activate([

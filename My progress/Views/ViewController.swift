@@ -39,34 +39,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         view.backgroundColor = .white
         
         
-        // MARK: - ScrollView
-        scrollView.bounces                      = true
-        // scrollView.isPagingEnabled = true
-        scrollView.contentSize                  = CGSize(width: Int(self.view.frame.size.width), height: 100)
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.contentSize                  = self.view.frame.size
-        scrollView.backgroundColor              = UIColor(named: "DarkBackground")
-        
-        scrollView.alwaysBounceVertical = true
-        scrollView.bounces = true
-        
-        self.view.addSubview(scrollView)
-        scrollView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(view.snp.top)
-            make.bottom.left.right.equalTo(view)
-        }
-        
-        
-        progressTV.backgroundColor = .black
+        // progressTV.backgroundColor = .black
         // progressTV.frame = CGRect(x: 0, y: displayHeight, width: displayWidth, height: displayHeight - barHeight)
         // progressTV.contentSize = self.view.frame.size
-        progressTV.contentSize = CGSize(width: Int(self.view.frame.size.width), height: 100)
+        // progressTV.contentSize = CGSize(width: Int(self.view.frame.size.width), height: 100)
+        
+        // progressTV.contentSize = self.view.contentSize
+        progressTV.contentSize = self.view.frame.size
         progressTV.register(progressTVC.self, forCellReuseIdentifier: "progressCell")
-        progressTV.rowHeight = 150
+        progressTV.rowHeight = 100
         progressTV.tableFooterView = UIView()
         
         progressTV.bounces = true
         progressTV.isScrollEnabled = true
+        progressTV.alwaysBounceVertical = true
         
         progressTV.dataSource = self
         progressTV.delegate = self
@@ -75,7 +61,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         progressTV.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(view.snp.top)
-            make.bottom.left.right.equalTo(view)
+            // make.bottom.left.right.equalTo(view)
+            make.leading.equalTo(view.snp.leading)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.snp.bottom)
         }
         
         print("\(progressObjects.count)")
@@ -104,7 +93,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         print("\(progress.value(forKey: "name") as? String ?? "Unknown progress name")")
         
-        cell.contentView.translatesAutoresizingMaskIntoConstraints = false
+        // cell.contentView.translatesAutoresizingMaskIntoConstraints = false
         
         return cell
     }
@@ -185,4 +174,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 
 }
+
+// MARK: - ScrollView
+//        scrollView.bounces                      = true
+//        // scrollView.isPagingEnabled = true
+//        // scrollView.contentSize                  = CGSize(width: Int(self.view.frame.size.width), height: 100)
+//        scrollView.showsVerticalScrollIndicator = false
+//        scrollView.contentSize                  = self.view.frame.size
+//        scrollView.backgroundColor              = UIColor(named: "DarkBackground")
+//
+//        scrollView.alwaysBounceVertical = true
+//        scrollView.bounces = true
+//
+//        self.view.addSubview(scrollView)
+//        scrollView.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(view.snp.top)
+//            make.bottom.left.right.equalTo(view)
+//        }
 

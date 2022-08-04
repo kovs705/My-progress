@@ -22,9 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         
         let vc = ViewController()
-        let rootNC = UINavigationController(rootViewController: vc)
+        let nc = UINavigationController(rootViewController: vc)
         
-        self.window?.rootViewController = rootNC
+        nc.viewControllers = [vc]
+        
+        self.window?.rootViewController = nc
         self.window?.makeKeyAndVisible()
         print("Scene appeared")
     }

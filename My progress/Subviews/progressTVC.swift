@@ -18,31 +18,33 @@ class progressTVC: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         progressName.translatesAutoresizingMaskIntoConstraints = false
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         progressName.font = UIFont.systemFont(ofSize: 20)
+        progress.backgroundColor = .black
         
         // contentView.addSubview(progressName)
         addSubview(progressName)
         addSubview(progress)
         
-//        progress.snp.makeConstraints { (make) -> Void in
-//            make.bottom.right.top.equalTo(20)
-//            // - make a left constraint for the name of the progress..
-//            make.width.equalTo(100)
-//            make.height.equalTo(100)
-//        }
+        progress.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(-20)
+            make.top.equalTo(25)
+            make.bottom.equalTo(-25)
+            make.width.equalTo(50)
+            // make.height.equalTo(50)
+        }
         
         progressName.snp.makeConstraints { (make) -> Void in
             //make.left.equalTo(20)
-            make.height.equalTo(100)
-            make.left.top.bottom.right.equalTo(20)
+            // make.height.equalTo(50)
+            make.left.top.equalTo(20)
+            make.bottom.equalTo(-20)
+            make.right.equalTo(progress.snp.left).offset(-20)
         }
         
-///        NSLayoutConstraint.activate([
-///            progressName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-///            progressName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-///            progressName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-///            progressName.heightAnchor.constraint(equalToConstant: 50)
-///        ])
+
     }
     
     required init?(coder: NSCoder) {
@@ -51,7 +53,6 @@ class progressTVC: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

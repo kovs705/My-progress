@@ -22,17 +22,19 @@ class progressTVC: UITableViewCell {
         
         
         progressName.font = UIFont.systemFont(ofSize: 20)
-        progress.backgroundColor = .black
+        progress.backgroundColor = .clear
         
         // contentView.addSubview(progressName)
         addSubview(progressName)
         addSubview(progress)
         
+        progress.addSubview(circleProgressView())
+        
         progress.snp.makeConstraints { (make) -> Void in
             make.right.equalTo(-20)
-            make.top.equalTo(25)
-            make.bottom.equalTo(-25)
-            make.width.equalTo(50)
+            make.top.equalTo(20)
+            make.bottom.equalTo(-20)
+            make.width.equalTo(60)
             // make.height.equalTo(50)
         }
         

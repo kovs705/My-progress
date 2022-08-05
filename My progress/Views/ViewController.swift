@@ -25,6 +25,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let addProgressBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addProgress))
         self.navigationItem.rightBarButtonItem = addProgressBarButton
         
+        title = "My progress"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         fetchData()
         
         

@@ -22,6 +22,7 @@
 		4EBC0F7528933BF4005A622D /* My_progressUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F7428933BF4005A622D /* My_progressUITestsLaunchTests.swift */; };
 		4EBC0F8328934083005A622D /* Progress+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F8128934083005A622D /* Progress+CoreDataClass.swift */; };
 		4EBC0F8428934083005A622D /* Progress+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F8228934083005A622D /* Progress+CoreDataProperties.swift */; };
+		4ECEAB8F289F143B00C67569 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECEAB8E289F143B00C67569 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		4EBC0F7428933BF4005A622D /* My_progressUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_progressUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4EBC0F8128934083005A622D /* Progress+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Progress+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4EBC0F8228934083005A622D /* Progress+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Progress+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4ECEAB8E289F143B00C67569 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 				4EBC0F5A28933BF4005A622D /* Assets.xcassets */,
 				4EBC0F5C28933BF4005A622D /* LaunchScreen.storyboard */,
 				4EBC0F5F28933BF4005A622D /* Info.plist */,
+				4ECEAB8E289F143B00C67569 /* Extensions.swift */,
 				4EBC0F8528934089005A622D /* Progress */,
 			);
 			path = "My progress";
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E1057C9289D3FD90088498C /* progressLayer.swift in Sources */,
+				4ECEAB8F289F143B00C67569 /* Extensions.swift in Sources */,
 				4EBC0F5328933BF1005A622D /* ViewController.swift in Sources */,
 				4EBC0F4F28933BF1005A622D /* AppDelegate.swift in Sources */,
 				4EBC0F5928933BF1005A622D /* My_progress.xcdatamodeld in Sources */,

@@ -16,10 +16,17 @@ import CoreData
 class circleProgressView: BaseView {
     
     lazy var progress = Progress()
+    
     let circleLayer = CAShapeLayer()
+    let progressLayer = CAShapeLayer()
+    
+    var startPoint = CGFloat(-Double.pi / 2)
+    var endPoint = CGFloat(3 * Double.pi / 2)
     
     let backView = UIView()
     
+    let colors: [UIColor] = [UIColor.red, UIColor.black,
+                             UIColor.blue, UIColor.purple, UIColor.orange]
     
     override init() {
         super.init() // initialize a new object
@@ -29,14 +36,28 @@ class circleProgressView: BaseView {
         // configuring..
         backView.backgroundColor = .clear
         
-        let circularPathForProgressView = UIBezierPath(arcCenter: center, radius: 37, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        let circularPathForProgressView = UIBezierPath(arcCenter: center, radius: 35, startAngle: startPoint, endAngle: endPoint, clockwise: true)
         
         circleLayer.path = circularPathForProgressView.cgPath
-        circleLayer.strokeColor = UIColor.red.cgColor
+        circleLayer.strokeColor = UIColor(named: "Cloud")?.cgColor
         circleLayer.lineWidth = 9
+        circleLayer.fillColor = UIColor.clear.cgColor
+        circleLayer.strokeEnd = 1.0
+        circleLayer.lineCap = .round
+        
+        progressLayer.path = circularPathForProgressView.cgPath
+        progressLayer.strokeColor = colors.randomElement()?.cgColor
+        progressLayer.lineWidth = 9
+        progressLayer.fillColor = UIColor.clear.cgColor
+        progressLayer.strokeEnd = .random(in: 0...1.0)
+        circleLayer.lineCap = .butt
+        
+        
+        //TODO: make circle white\black, add values and progress
         
         addSubview(backView)
         backView.layer.addSublayer(circleLayer)
+        backView.layer.addSublayer(progressLayer)
     }
     
     override func layoutSubviews() {

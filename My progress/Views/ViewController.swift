@@ -15,7 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     lazy var scrollView = UIScrollView()
     
     var progressObjects: [NSManagedObject] = []
-
+    let userCalendar = Calendar.current
     
     
     override func viewDidLoad() {
@@ -95,6 +95,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.progressName.text = progress.value(forKey: "name") as? String ?? "unknown progress"
         
         print("\(progress.value(forKey: "name") as? String ?? "Unknown progress name")")
+        print("\(progress.value(forKey: "order") as? String ?? "Unknown order of the progress")")
         
         // cell.contentView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -102,7 +103,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        managedContext.delete(progressObjects[indexPath.row])
+        
+        for progress in progressObjects {
+            if progress.value(forKey: "order") as! Int > progressObjects[indexPath.row].value(forKey: "order") as! Int + 1 {
+                let progressToReduce = progress.value(forKey: "order") as! Int - 1
+                progress.setValue(progressToReduce, forKey: "order")
+            } else {
+                // return
+                let progressToReduce = progress.value(forKey: "order") as! Int - 1
+                progress.setValue(progressToReduce, forKey: "order")
+            }
+        }
         tableView.deselectRow(at: indexPath, animated: true)
+        print("row is deleted")
+        
+        do {
+            if managedContext.hasChanges {
+                try managedContext.save()
+//                self.progressTV.performBatchUpdates({
+//                    self.progressTV.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
+//                }, completion: nil)
+                progressTV.reloadData()
+                // fetchData()
+            }
+        } catch {
+            print("Something wrong on deleting the progress")
+        }
     }
     
     @objc func addProgress() {
@@ -149,7 +181,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         progress.setValue(name, forKey: "name")
         progress.setValue(1, forKey: "value")
         progress.setValue(0, forKey: "progress")
-        progress.setValue((progressObjects.count) + 1, forKey: "order")
+        // progress.setValue((progressObjects.count ?? 0) + 1, forKey: "order")
+        
+        if !progressObjects.isEmpty {
+            progress.setValue(1, forKey: "order")
+        } else {
+            progress.setValue((progressObjects.count) + 1, forKey: "order")
+        }
         
         do  {
             progressObjects.insert(progress, at: 0)
@@ -174,7 +212,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print("Couldn't fetch. \(error), \(error.userInfo)")
         }
     }
-
+    
+    
+    
+    // MARK: - progress calculating
+    
+    func calculateHours(start: Date, end: Date) -> DateComponents {
+        
+        let hoursToEnd = userCalendar.dateComponents([.hour], from: start, to: end)
+        
+        return hoursToEnd
+    }
+    
 
 }
 

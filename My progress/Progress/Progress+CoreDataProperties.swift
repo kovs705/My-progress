@@ -18,6 +18,9 @@ extension Progress {
 
     @NSManaged public var name: String?
     
+    @NSManaged public var dateEnd: Date?
+    @NSManaged public var dateStart: Date?
+    
     public var wrappedProgressName: String {
         name ?? "Unknown name"
     }

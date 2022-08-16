@@ -8,30 +8,25 @@
 import UIKit
 import SnapKit
 
-class AddProgressVC: ViewController {
+class AddProgressVC: UIViewController {
     
-    lazy var scrollPage: UIScrollView = {
-        let scrollPage = UIScrollView()
-        scrollPage.addSubview(stackView)
+    lazy var scrollPage = UIScrollView()
+    lazy var stackView = UIStackView()
+    // lazy var view = UIView()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.backgroundColor = .white
+        stackView.backgroundColor = .gray
+        
         scrollPage.showsVerticalScrollIndicator = true
         scrollPage.bounces = true
         scrollPage.alwaysBounceVertical = true
         scrollPage.contentSize = CGSize(width: Int(self.view.frame.size.width), height: 100)
-        return scrollView
-    }()
-    
-    lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
+        
         stackView.axis = .vertical
         stackView.spacing = 20
-        return stackView
-    }()
-    
-    override func loadView() {
-        
-        let view = UIView()
-        view.backgroundColor = .white
-        stackView.backgroundColor = .gray
         
         // MARK: - platform for views:
         view.addSubview(scrollPage)
@@ -53,7 +48,7 @@ class AddProgressVC: ViewController {
             stack.bottom.right.equalTo(scrollPage)
         }
         
-        self.view = view
+        // self.view = view
         
         // MARK: - stack's pbjects:
         for _ in 0..<20 {

@@ -11,9 +11,11 @@ import SnapKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // let addProgressVC = AddProgressVC()
+    
     lazy var progressTV = UITableView()
     lazy var scrollView = UIScrollView()
-    // let floatingButton = UIButton()
+    let floatingButton = UIButton()
     
     var progressObjects: [NSManagedObject] = []
     let userCalendar = Calendar.current
@@ -67,21 +69,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // MARK: - Floating button
         
-//        floatingButton.setTitle("Add", for: .normal)
-//        floatingButton.backgroundColor = .black
-//        floatingButton.layer.cornerRadius = 25
-//
-//
-//        progressTV.addSubview(floatingButton)
-//        floatingButton.translatesAutoresizingMaskIntoConstraints = false
-//
-//        floatingButton.snp.makeConstraints { (button) -> Void in
-//            button.width.equalTo(50)
-//            button.height.equalTo(50)
-//            // button.centerX.equalTo(view.snp.centerX)
-//            button.bottom.equalTo(view.snp.bottom).offset(-10)
-//            button.trailing.equalTo(view.snp.trailing).offset(-20)
-//        }
+        floatingButton.setTitle("Add", for: .normal)
+        floatingButton.backgroundColor = .black
+        floatingButton.layer.cornerRadius = 25
+
+        view.addSubview(floatingButton)
+        floatingButton.translatesAutoresizingMaskIntoConstraints = false
+
+        floatingButton.snp.makeConstraints { (button) -> Void in
+            button.width.equalTo(55)
+            button.height.equalTo(55)
+            // button.centerX.equalTo(view.snp.centerX)
+            button.bottom.equalTo(view.snp.bottom).offset(-30)
+            button.trailing.equalTo(view.snp.trailing).offset(-20)
+        }
+        
+        floatingButton.addTarget(self, action: #selector(openVCToAddProgress), for: .touchUpInside)
         
         print("\(progressObjects.count)")
         
@@ -148,6 +151,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } catch {
             print("Something wrong on deleting the progress")
         }
+    }
+    
+    @objc func openVCToAddProgress(sender: UIButton!) {
+        print("Floating button clicked!")
+        self.navigationController?.pushViewController(AddProgressVC(), animated: true)
     }
     
     @objc func addProgress() {

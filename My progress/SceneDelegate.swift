@@ -22,10 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         
         let vc = ViewController()
-        // let addProgressVC = AddProgressVC()
+        // let addprVC = AddProgressVC()
         let nc = UINavigationController(rootViewController: vc)
         
-        nc.viewControllers = [vc]
+        // nc.viewControllers = [vc, addprVC]
         
         self.window?.rootViewController = nc
         self.window?.makeKeyAndVisible()

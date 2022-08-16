@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         
         let vc = ViewController()
+        // let addProgressVC = AddProgressVC()
         let nc = UINavigationController(rootViewController: vc)
         
         nc.viewControllers = [vc]

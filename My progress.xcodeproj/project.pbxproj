@@ -10,6 +10,7 @@
 		4E0DAF5A289410B100DDA594 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4E0DAF59289410B100DDA594 /* SnapKit */; };
 		4E1057C9289D3FD90088498C /* progressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1057C8289D3FD90088498C /* progressLayer.swift */; };
 		4E60C34528934A32004E3E77 /* progressTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60C34428934A32004E3E77 /* progressTVC.swift */; };
+		4E8B500E28AAB22F00893051 /* AddProgressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B500D28AAB22F00893051 /* AddProgressVC.swift */; };
 		4EBC0F4F28933BF1005A622D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F4E28933BF1005A622D /* AppDelegate.swift */; };
 		4EBC0F5128933BF1005A622D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F5028933BF1005A622D /* SceneDelegate.swift */; };
 		4EBC0F5328933BF1005A622D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F5228933BF1005A622D /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		4E1057C8289D3FD90088498C /* progressLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressLayer.swift; sourceTree = "<group>"; };
 		4E60C34428934A32004E3E77 /* progressTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressTVC.swift; sourceTree = "<group>"; };
+		4E8B500D28AAB22F00893051 /* AddProgressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgressVC.swift; sourceTree = "<group>"; };
 		4EBC0F4B28933BF1005A622D /* My progress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My progress.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBC0F4E28933BF1005A622D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EBC0F5028933BF1005A622D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				4EBC0F5228933BF1005A622D /* ViewController.swift */,
+				4E8B500D28AAB22F00893051 /* AddProgressVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E1057C9289D3FD90088498C /* progressLayer.swift in Sources */,
+				4E8B500E28AAB22F00893051 /* AddProgressVC.swift in Sources */,
 				4ECEAB8F289F143B00C67569 /* Extensions.swift in Sources */,
 				4EBC0F5328933BF1005A622D /* ViewController.swift in Sources */,
 				4EBC0F4F28933BF1005A622D /* AppDelegate.swift in Sources */,

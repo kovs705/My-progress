@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     lazy var progressTV = UITableView()
     lazy var scrollView = UIScrollView()
+    // let floatingButton = UIButton()
     
     var progressObjects: [NSManagedObject] = []
     let userCalendar = Calendar.current
@@ -41,12 +42,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         view.backgroundColor = .white
         
-        
-        // progressTV.backgroundColor = .black
-        // progressTV.frame = CGRect(x: 0, y: displayHeight, width: displayWidth, height: displayHeight - barHeight)
-        // progressTV.contentSize = self.view.frame.size
-        // progressTV.contentSize = CGSize(width: Int(self.view.frame.size.width), height: 100)
-        
         // progressTV.contentSize = self.view.contentSize
         progressTV.contentSize = self.view.frame.size
         progressTV.register(progressTVC.self, forCellReuseIdentifier: "progressCell")
@@ -69,6 +64,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             make.trailing.equalTo(view.snp.trailing)
             make.bottom.equalTo(view.snp.bottom)
         }
+        
+        // MARK: - Floating button
+        
+//        floatingButton.setTitle("Add", for: .normal)
+//        floatingButton.backgroundColor = .black
+//        floatingButton.layer.cornerRadius = 25
+//
+//
+//        progressTV.addSubview(floatingButton)
+//        floatingButton.translatesAutoresizingMaskIntoConstraints = false
+//
+//        floatingButton.snp.makeConstraints { (button) -> Void in
+//            button.width.equalTo(50)
+//            button.height.equalTo(50)
+//            // button.centerX.equalTo(view.snp.centerX)
+//            button.bottom.equalTo(view.snp.bottom).offset(-10)
+//            button.trailing.equalTo(view.snp.trailing).offset(-20)
+//        }
         
         print("\(progressObjects.count)")
         
@@ -95,7 +108,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.progressName.text = progress.value(forKey: "name") as? String ?? "unknown progress"
         
         print("\(progress.value(forKey: "name") as? String ?? "Unknown progress name")")
-        print("\(progress.value(forKey: "order") as? String ?? "Unknown order of the progress")")
+        // print("\(progress.value(forKey: "order") as? String ?? "Unknown order of the progress")")
         
         // cell.contentView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -183,7 +196,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         progress.setValue(0, forKey: "progress")
         // progress.setValue((progressObjects.count ?? 0) + 1, forKey: "order")
         
-        if !progressObjects.isEmpty {
+        if progressObjects.isEmpty {
             progress.setValue(1, forKey: "order")
         } else {
             progress.setValue((progressObjects.count) + 1, forKey: "order")

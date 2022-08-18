@@ -120,14 +120,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        var selectedRow = 0
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
-        managedContext.delete(progressObjects[indexPath.row])
+        selectedRow = indexPath.row
+        print("\(selectedRow)")
+    
+        managedContext.delete(progressObjects[selectedRow])
         
         for progress in progressObjects {
-            if progress.value(forKey: "order") as! Int > progressObjects[indexPath.row].value(forKey: "order") as! Int + 1 {
+            if progress.value(forKey: "order") as! Int > progressObjects[selectedRow].value(forKey: "order") as! Int {
                 let progressToReduce = progress.value(forKey: "order") as! Int - 1
                 progress.setValue(progressToReduce, forKey: "order")
             } else {
@@ -136,15 +141,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 progress.setValue(progressToReduce, forKey: "order")
             }
         }
-        tableView.deselectRow(at: indexPath, animated: true)
+        // tableView.deselectRow(at: indexPath, animated: true)
         print("row is deleted")
         
         do {
             if managedContext.hasChanges {
                 try managedContext.save()
-//                self.progressTV.performBatchUpdates({
-//                    self.progressTV.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .automatic)
-//                }, completion: nil)
+                
+                fetchData()
                 progressTV.reloadData()
                 // fetchData()
             }

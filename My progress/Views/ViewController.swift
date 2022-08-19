@@ -239,18 +239,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    
-    
-    // MARK: - progress calculating
-    
-    func calculateHours(start: Date, end: Date) -> DateComponents {
-        
-        let hoursToEnd = userCalendar.dateComponents([.hour], from: start, to: end)
-        
-        return hoursToEnd
-    }
-    
+}
 
+// MARK: - progress calculating
+extension Calendar {
+    func calculateDaysBetween(_ from: Date, and to: Date) -> Int {
+        let fromDate = startOfDay(for: from)
+        let toDate = startOfDay(for: to)
+        
+        let numberOfDays = dateComponents([.day], from: fromDate, to: toDate)
+        
+        return numberOfDays.day! + 1
+    }
 }
 
 // MARK: - ScrollView

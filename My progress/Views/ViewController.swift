@@ -159,7 +159,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @objc func openVCToAddProgress(sender: UIButton!) {
         print("Floating button clicked!")
-        self.navigationController?.pushViewController(AddProgressVC(), animated: true)
+        // self.navigationController?.pushViewController(AddProgressVC(), animated: true)
+        self.navigationController?.showDetailViewController(AddProgressVC(), sender: sender)
     }
     
     @objc func addProgress() {

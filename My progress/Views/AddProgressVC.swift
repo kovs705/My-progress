@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import ObjectiveC
 
 class AddProgressVC: UIViewController {
     
@@ -14,8 +15,24 @@ class AddProgressVC: UIViewController {
     lazy var stackView = UIStackView()
     // lazy var view = UIView()
     
+    lazy var nameField = UITextField(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 40, height: 30))
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//            super.viewWillAppear(animated)
+//            if #available(iOS 13.0, *) {
+//                self.view.layoutIfNeeded()
+//                self.view.updateConstraintsIfNeeded()
+//            }
+//        }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backButton = navigationController?.navigationItem.backBarButtonItem
+        
+        title = "Add"
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationItem.leftBarButtonItem = backButton
         
         self.view.backgroundColor = .white
         stackView.backgroundColor = .gray
@@ -45,7 +62,7 @@ class AddProgressVC: UIViewController {
         }
         
         stackView.snp.makeConstraints { (stack) -> Void in
-            stack.top.equalTo(scrollPage.snp.top)
+            stack.top.equalTo(scrollPage.snp.top).offset(50)
             stack.leading.equalTo(view.snp.leading).offset(20)
             stack.bottom.equalTo(scrollPage)
             // stack.width.equalTo(scrollPage.snp.width).offset(-40)
@@ -55,7 +72,7 @@ class AddProgressVC: UIViewController {
         // self.view = view
         
         // MARK: - stack's pbjects:
-        for _ in 0..<1 {
+        for _ in 0..<5 {
             let circle = UIView()
             circle.translatesAutoresizingMaskIntoConstraints = true
             
@@ -71,6 +88,22 @@ class AddProgressVC: UIViewController {
             
             stackView.addArrangedSubview(circle)
         }
+        
+        // MARK: - TextField for name
+        nameField.placeholder = "Progress name"
+        nameField.borderStyle = .roundedRect
+        nameField.backgroundColor = UIColor.white
+        nameField.font = .systemFont(ofSize: 17, weight: .heavy)
+        
+        stackView.addArrangedSubview(nameField)
+        
+        // MARK: - Date picker start
+        
+        // MARK: - Date picker end
+        
+        // MARK: - Note view
+        
+        // MARK: - Save Button
         
     }
     

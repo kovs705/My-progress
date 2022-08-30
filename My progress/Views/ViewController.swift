@@ -20,6 +20,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var progressObjects: [NSManagedObject] = []
     let userCalendar = Calendar.current
     
+    var dateEnd = DateComponents()
+    var dateStart = DateComponents()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         navigationController?.navigationBar.prefersLargeTitles = true
         
         fetchData()
+        
+        
+        dateEnd.day = 1
+        dateEnd.month = 12
+        dateEnd.year = 2022
+
+
+        dateStart.day = 1
+        dateStart.month = 1
+        dateStart.year = 2022
         
         
         // MARK: - Interface
@@ -105,15 +117,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let progress = self.progressObjects[indexPath.row]
+        // let endDate = progress.value(forKey: "dateEnd") as! Date
         
         let cell = progressTV.dequeueReusableCell(withIdentifier: "progressCell", for: indexPath) as! progressTVC
+        cell.configureCell(endDate: ((progress.value(forKey: "dateEnd") as? Date) ?? Date()))
+        
+        
         // give values here..
         cell.progressName.text = progress.value(forKey: "name") as? String ?? "unknown progress"
         
-        print("\(progress.value(forKey: "name") as? String ?? "Unknown progress name")")
+        // cell.progressStartDate = progress.value(forKey: "dateStart") as! Date
+        
+        // print("Start date is \(String(describing: progress.value(forKey: "dateStart")))")
+        print("End date is \(String(describing: progress.value(forKey: "dateEnd")))")
+        
+        // print("\(progress.value(forKey: "name") as? String ?? "Unknown progress name")")
         // print("\(progress.value(forKey: "order") as? String ?? "Unknown order of the progress")")
         
         // cell.contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // calculating
         
         return cell
     }
@@ -209,6 +232,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         progress.setValue(0, forKey: "progress")
         // progress.setValue((progressObjects.count ?? 0) + 1, forKey: "order")
         
+        // MARK: - Date start
+        progress.setValue(userCalendar.startOfDay(for: Date()), forKey: "dateStart")
+        print("start date --------\(progress.value(forKey: "dateStart") ?? dateStart)")
+        
+        // MARK: - Date end
+        var dateEndDebug = DateComponents()
+        dateEndDebug.day = 27
+        dateEndDebug.month = 9
+        dateEndDebug.year = 2022
+        
+        let endDate: Date = userCalendar.date(from: dateEndDebug)!
+        print("end date -------- \(endDate)")
+        
+        progress.setValue(userCalendar.startOfDay(for: endDate), forKey: "dateEnd")
+        print("\(progress.value(forKey: "dateEnd") ?? dateEnd)")
+        
         if progressObjects.isEmpty {
             progress.setValue(1, forKey: "order")
         } else {
@@ -243,13 +282,44 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 // MARK: - progress calculating
 extension Calendar {
-    func calculateDaysBetween(_ from: Date, and to: Date) -> Int {
+    func calculateDaysBetween(_ from: Date, and to: Date) -> Double {
         let fromDate = startOfDay(for: from)
         let toDate = startOfDay(for: to)
         
         let numberOfDays = dateComponents([.day], from: fromDate, to: toDate)
-        
-        return numberOfDays.day! + 1
+        print("number of days are \(numberOfDays.day! + 1)")
+        return Double(Double(numberOfDays.day!) + 1.0)
+    }
+    
+//    func calculateHoursBetween(_ from: Date, and to: Date) -> Double {
+//        let fromDate = startOfDay(for: from)
+//        let toDate = startOfDay(for: to)
+//
+//        let hoursToEnd = dateComponents([.hour], from: fromDate, to: toDate)
+//
+//        return Double(hoursToEnd.hour!)
+//    }
+}
+
+func calculateForCircle(_ timeToEnd: Double) -> Double {
+    // let end = 1
+    var value: Double = 0.1
+    if timeToEnd <= 9 {
+        print("Time to end is \(timeToEnd)")
+        value = (Double(timeToEnd) / 10)
+        print(value)
+        return value
+    } else if timeToEnd <= 99 {
+        value = (Double(timeToEnd) / 100)
+        print(value)
+        return value
+    } else if timeToEnd <= 999 {
+        value = (Double(timeToEnd) / 1000)
+        print(value)
+        return value
+    } else {
+        print("damn, that's too much...")
+        return value
     }
 }
 

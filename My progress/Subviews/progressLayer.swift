@@ -15,7 +15,7 @@ import CoreData
 
 class circleProgressView: BaseView {
     
-    lazy var progress = Progress()
+    var progressObject = Progress()
     
     let circleLayer = CAShapeLayer()
     let progressLayer = CAShapeLayer()
@@ -28,8 +28,16 @@ class circleProgressView: BaseView {
     let colors: [UIColor] = [UIColor.red, UIColor.black,
                              UIColor.blue, UIColor.purple, UIColor.orange]
     
-    override init() {
-        super.init() // initialize a new object
+    var dateEndDebug = DateComponents()
+    
+    override convenience init() {
+        self.init()
+        // self.progressObject = progress
+        
+        
+        dateEndDebug.day = 25
+        dateEndDebug.month = 9
+        dateEndDebug.year = 2022
         
         let center = backView.center
         
@@ -49,7 +57,8 @@ class circleProgressView: BaseView {
         progressLayer.strokeColor = colors.randomElement()?.cgColor
         progressLayer.lineWidth = 9
         progressLayer.fillColor = UIColor.clear.cgColor
-        progressLayer.strokeEnd = .random(in: 0...1.0)
+        // progressLayer.strokeEnd = .random(in: 0...1.0) //TODO: - work this this one
+        progressLayer.strokeEnd = calculateForCircle(Calendar.current.calculateDaysBetween(progressObject.value(forKey: "dateStart") as! Date, and: Date()))
         circleLayer.lineCap = .butt
         
         

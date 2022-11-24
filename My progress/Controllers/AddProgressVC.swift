@@ -37,39 +37,45 @@ class AddProgressVC: UIViewController {
         self.view.backgroundColor = .white
         stackView.backgroundColor = .gray
         
-        scrollPage.showsVerticalScrollIndicator = true
-        scrollPage.bounces = true
-        scrollPage.alwaysBounceVertical = true
-        // scrollPage.contentSize = CGSize(width: Int(self.view.frame.size.width), height: 100)
+        scrollPage.makeScrollPage()
+//        scrollPage.showsVerticalScrollIndicator = true
+//        scrollPage.bounces = true
+//        scrollPage.alwaysBounceVertical = true
         
-        stackView.axis = .vertical
-        stackView.spacing = 20
-        stackView.alignment = .center
-        stackView.distribution = .equalSpacing
+        /// scrollPage.contentSize = CGSize(width: Int(self.view.frame.size.width), height: 100)
+        
+        stackView.makeStackView()
+//        stackView.axis = .vertical
+//        stackView.spacing = 20
+//        stackView.alignment = .center
+//        stackView.distribution = .equalSpacing
         
         // MARK: - platform for views:
         view.addSubview(scrollPage)
         scrollPage.addSubview(stackView)
         
-        scrollPage.translatesAutoresizingMaskIntoConstraints = false
+        // scrollPage.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        scrollPage.placeScrollPage(view: view)
+//        scrollPage.snp.makeConstraints { (scroll) -> Void in
+//            scroll.top.equalTo(view.snp.top)
+//            scroll.leading.equalTo(view.snp.leading)
+//            scroll.bottom.right.equalTo(view)
+//        }
         
-        scrollPage.snp.makeConstraints { (scroll) -> Void in
-            scroll.top.equalTo(view.snp.top)
-            scroll.leading.equalTo(view.snp.leading)
-            scroll.bottom.right.equalTo(view)
-        }
-        
-        stackView.snp.makeConstraints { (stack) -> Void in
-            stack.top.equalTo(scrollPage.snp.top).offset(50)
-            stack.leading.equalTo(view.snp.leading).offset(20)
-            stack.bottom.equalTo(scrollPage)
-            // stack.width.equalTo(scrollPage.snp.width).offset(-40)
-            stack.centerX.equalToSuperview()
-        }
+        stackView.placeStackView(view: view, scrollPage: scrollPage)
+//        stackView.snp.makeConstraints { (stack) -> Void in
+//            stack.top.equalTo(scrollPage.snp.top).offset(50)
+//            stack.leading.equalTo(view.snp.leading).offset(20)
+//            stack.bottom.equalTo(scrollPage)
+//            // stack.width.equalTo(scrollPage.snp.width).offset(-40)
+//            stack.centerX.equalToSuperview()
+//        }
         
         // self.view = view
+        
+        
         
         // MARK: - stack's pbjects:
         for _ in 0..<5 {

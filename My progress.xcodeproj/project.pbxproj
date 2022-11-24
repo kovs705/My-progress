@@ -11,6 +11,11 @@
 		4E1057C9289D3FD90088498C /* progressLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1057C8289D3FD90088498C /* progressLayer.swift */; };
 		4E60C34528934A32004E3E77 /* progressTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E60C34428934A32004E3E77 /* progressTVC.swift */; };
 		4E8B500E28AAB22F00893051 /* AddProgressVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8B500D28AAB22F00893051 /* AddProgressVC.swift */; };
+		4EB897E0292E88E7001FEC0C /* scrollPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB897DF292E88E7001FEC0C /* scrollPage.swift */; };
+		4EB897E2292E8A4C001FEC0C /* stackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB897E1292E8A4C001FEC0C /* stackView.swift */; };
+		4EB897E6292E9003001FEC0C /* progressTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB897E5292E9003001FEC0C /* progressTV.swift */; };
+		4EB897E8292E916A001FEC0C /* floatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB897E7292E916A001FEC0C /* floatingButton.swift */; };
+		4EB897EA292E92F4001FEC0C /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB897E9292E92F4001FEC0C /* Data.swift */; };
 		4EBC0F4F28933BF1005A622D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F4E28933BF1005A622D /* AppDelegate.swift */; };
 		4EBC0F5128933BF1005A622D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F5028933BF1005A622D /* SceneDelegate.swift */; };
 		4EBC0F5328933BF1005A622D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBC0F5228933BF1005A622D /* ViewController.swift */; };
@@ -46,6 +51,11 @@
 		4E1057C8289D3FD90088498C /* progressLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressLayer.swift; sourceTree = "<group>"; };
 		4E60C34428934A32004E3E77 /* progressTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressTVC.swift; sourceTree = "<group>"; };
 		4E8B500D28AAB22F00893051 /* AddProgressVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProgressVC.swift; sourceTree = "<group>"; };
+		4EB897DF292E88E7001FEC0C /* scrollPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scrollPage.swift; sourceTree = "<group>"; };
+		4EB897E1292E8A4C001FEC0C /* stackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stackView.swift; sourceTree = "<group>"; };
+		4EB897E5292E9003001FEC0C /* progressTV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = progressTV.swift; sourceTree = "<group>"; };
+		4EB897E7292E916A001FEC0C /* floatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = floatingButton.swift; sourceTree = "<group>"; };
+		4EB897E9292E92F4001FEC0C /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		4EBC0F4B28933BF1005A622D /* My progress.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My progress.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EBC0F4E28933BF1005A622D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4EBC0F5028933BF1005A622D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,22 +100,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E60C342289349B4004E3E77 /* Views */ = {
+		4E60C342289349B4004E3E77 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				4EBC0F5228933BF1005A622D /* ViewController.swift */,
 				4E8B500D28AAB22F00893051 /* AddProgressVC.swift */,
 			);
-			path = Views;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		4E60C343289349BB004E3E77 /* Subviews */ = {
+		4E60C343289349BB004E3E77 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				4E60C34428934A32004E3E77 /* progressTVC.swift */,
 				4E1057C8289D3FD90088498C /* progressLayer.swift */,
+				4EB897E4292E8E92001FEC0C /* ViewController */,
 			);
-			path = Subviews;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4EB897DE292E880D001FEC0C /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				4EBC0F5C28933BF4005A622D /* LaunchScreen.storyboard */,
+				4ECEAB8E289F143B00C67569 /* Extensions.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		4EB897E4292E8E92001FEC0C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4EB897E5292E9003001FEC0C /* progressTV.swift */,
+				4EB897E7292E916A001FEC0C /* floatingButton.swift */,
+				4EB897EB292E9AD8001FEC0C /* PVC */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4EB897EB292E9AD8001FEC0C /* PVC */ = {
+			isa = PBXGroup;
+			children = (
+				4EB897DF292E88E7001FEC0C /* scrollPage.swift */,
+				4EB897E1292E8A4C001FEC0C /* stackView.swift */,
+			);
+			path = PVC;
 			sourceTree = "<group>";
 		};
 		4EBC0F4228933BF1005A622D = {
@@ -133,13 +172,12 @@
 			children = (
 				4EBC0F4E28933BF1005A622D /* AppDelegate.swift */,
 				4EBC0F5028933BF1005A622D /* SceneDelegate.swift */,
-				4E60C342289349B4004E3E77 /* Views */,
-				4E60C343289349BB004E3E77 /* Subviews */,
-				4EBC0F5A28933BF4005A622D /* Assets.xcassets */,
-				4EBC0F5C28933BF4005A622D /* LaunchScreen.storyboard */,
+				4E60C342289349B4004E3E77 /* Controllers */,
+				4E60C343289349BB004E3E77 /* Views */,
 				4EBC0F5F28933BF4005A622D /* Info.plist */,
-				4ECEAB8E289F143B00C67569 /* Extensions.swift */,
-				4EBC0F8528934089005A622D /* Progress */,
+				4EBC0F5A28933BF4005A622D /* Assets.xcassets */,
+				4EB897DE292E880D001FEC0C /* Other */,
+				4EBC0F8528934089005A622D /* Model */,
 			);
 			path = "My progress";
 			sourceTree = "<group>";
@@ -161,14 +199,15 @@
 			path = "My progressUITests";
 			sourceTree = "<group>";
 		};
-		4EBC0F8528934089005A622D /* Progress */ = {
+		4EBC0F8528934089005A622D /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				4EBC0F8128934083005A622D /* Progress+CoreDataClass.swift */,
 				4EBC0F8228934083005A622D /* Progress+CoreDataProperties.swift */,
 				4EBC0F5728933BF1005A622D /* My_progress.xcdatamodeld */,
+				4EB897E9292E92F4001FEC0C /* Data.swift */,
 			);
-			path = Progress;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -308,8 +347,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4E1057C9289D3FD90088498C /* progressLayer.swift in Sources */,
+				4EB897EA292E92F4001FEC0C /* Data.swift in Sources */,
 				4E8B500E28AAB22F00893051 /* AddProgressVC.swift in Sources */,
+				4EB897E0292E88E7001FEC0C /* scrollPage.swift in Sources */,
+				4EB897E6292E9003001FEC0C /* progressTV.swift in Sources */,
 				4ECEAB8F289F143B00C67569 /* Extensions.swift in Sources */,
+				4EB897E8292E916A001FEC0C /* floatingButton.swift in Sources */,
 				4EBC0F5328933BF1005A622D /* ViewController.swift in Sources */,
 				4EBC0F4F28933BF1005A622D /* AppDelegate.swift in Sources */,
 				4EBC0F5928933BF1005A622D /* My_progress.xcdatamodeld in Sources */,
@@ -317,6 +360,7 @@
 				4EBC0F5128933BF1005A622D /* SceneDelegate.swift in Sources */,
 				4EBC0F8428934083005A622D /* Progress+CoreDataProperties.swift in Sources */,
 				4EBC0F8328934083005A622D /* Progress+CoreDataClass.swift in Sources */,
+				4EB897E2292E8A4C001FEC0C /* stackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

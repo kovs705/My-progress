@@ -19,6 +19,8 @@ extension UITableView {
         self.bounces = true
         self.isScrollEnabled = true
         self.alwaysBounceVertical = true
+        
+        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func placeProgressTV(view: UIView) {

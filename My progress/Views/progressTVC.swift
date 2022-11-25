@@ -53,6 +53,7 @@ class progressTVC: UITableViewCell {
         
         progressName.translatesAutoresizingMaskIntoConstraints = false
         progress.translatesAutoresizingMaskIntoConstraints = false
+        backView.translatesAutoresizingMaskIntoConstraints = false
         
         progressName.font = UIFont.systemFont(ofSize: 20)
         progress.backgroundColor = .clear
@@ -80,10 +81,12 @@ class progressTVC: UITableViewCell {
         }
         
         // MARK: - Circle progress view
-        let center = backView.center
+        let center = progress.center
+        
+        progress.backgroundColor = .black
         
         // configuring..
-        backView.backgroundColor = .clear
+        backView.backgroundColor = .red
         backView.frame.size = CGSize(width: 60, height: 60)
         backView.frame.origin = CGPoint(x: 30, y: 30)
         
@@ -106,13 +109,14 @@ class progressTVC: UITableViewCell {
         
         let daysBetween = calculateForCircle(userCalendar.calculateDaysBetween(Date(), and: progressEndDate ?? Date()))
         
+        
         print("PROGRESS END DATE IS \(String(describing: progressEndDate))")
         progressLayer.strokeEnd = daysBetween
         circleLayer.lineCap = .butt
         
         progress.addSubview(backView)
-        backView.layer.addSublayer(circleLayer)
-        backView.layer.addSublayer(progressLayer)
+        progress.layer.addSublayer(circleLayer)
+        progress.layer.addSublayer(progressLayer)
         
         return self
     }

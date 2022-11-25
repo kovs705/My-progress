@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         title = "My progress"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        fetchData(progressObjects: progressObjects)
+        fetchData()
         
         dateEnd.day = 1
         dateEnd.month = 12
@@ -108,7 +108,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        fetchData(progressObjects: progressObjects)
+        fetchData()
         progressTV.reloadData()
     }
     
@@ -140,7 +140,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         // print("\(progress.value(forKey: "name") as? String ?? "Unknown progress name")")
         // print("\(progress.value(forKey: "order") as? String ?? "Unknown order of the progress")")
         
-        // cell.contentView.translatesAutoresizingMaskIntoConstraints = false
+        cell.contentView.translatesAutoresizingMaskIntoConstraints = false
         
         // calculating
         
@@ -178,7 +178,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if managedContext.hasChanges {
                 try managedContext.save()
                 
-                fetchData(progressObjects: progressObjects)
+                fetchData()
                 progressTV.reloadData()
                 // fetchData()
             }
@@ -206,7 +206,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 return
             }
             
-            saveProgress(name: textToSave, progressObjects: progressObjects, progressTV: progressTV, userCalendar: userCalendar, dateEnd: dateEnd, dateStart: dateStart)
+            // saveProgress(name: textToSave, progressObjects: progressObjects, progressTV: progressTV, userCalendar: userCalendar, dateEnd: dateEnd, dateStart: dateStart)
+            saveProgress(name: textToSave)
+            
+            print(progressObjects.count)
+            
             // self.groupCollection.reloadData()
         }
         // cancel action button
@@ -220,116 +224,116 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // MARK: - Functions
-//    func saveProgress(name: String) {
-//        // code to add a new progress:
-//        print("added ")
-//        
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//            return
-//        }
-//        
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//        
-//        let entity = NSEntityDescription.entity(forEntityName: "Progress", in: managedContext)!
-//        
-//        let progress = NSManagedObject(entity: entity, insertInto: managedContext)
-//        
-//        progress.setValue(name, forKey: "name")
-//        progress.setValue(1, forKey: "value")
-//        progress.setValue(0, forKey: "progress")
-//        // progress.setValue((progressObjects.count ?? 0) + 1, forKey: "order")
-//        
-//        // MARK: - Date start
-//        progress.setValue(userCalendar.startOfDay(for: Date()), forKey: "dateStart")
-//        print("start date --------\(progress.value(forKey: "dateStart") ?? dateStart)")
-//        
-//        // MARK: - Date end
-//        var dateEndDebug = DateComponents()
-//        dateEndDebug.day = 27
-//        dateEndDebug.month = 9
-//        dateEndDebug.year = 2022
-//        
-//        let endDate: Date = userCalendar.date(from: dateEndDebug)!
-//        print("end date -------- \(endDate)")
-//        
-//        progress.setValue(userCalendar.startOfDay(for: endDate), forKey: "dateEnd")
-//        print("\(progress.value(forKey: "dateEnd") ?? dateEnd)")
-//        
-//        if progressObjects.isEmpty {
-//            progress.setValue(1, forKey: "order")
-//        } else {
-//            progress.setValue((progressObjects.count) + 1, forKey: "order")
-//        }
-//        
-//        do  {
-//            progressObjects.insert(progress, at: 0)
-//            try managedContext.save()
-//            progressTV.reloadData()
-//        } catch let error as NSError {
-//            print("Could not save. \(error), \(error.userInfo)")
-//        }
-//    }
+    func saveProgress(name: String) {
+        // code to add a new progress:
+        print("added ")
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "Progress", in: managedContext)!
+        
+        let progress = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        progress.setValue(name, forKey: "name")
+        progress.setValue(1, forKey: "value")
+        progress.setValue(0, forKey: "progress")
+        // progress.setValue((progressObjects.count ?? 0) + 1, forKey: "order")
+        
+        // MARK: - Date start
+        progress.setValue(userCalendar.startOfDay(for: Date()), forKey: "dateStart")
+        print("start date --------\(progress.value(forKey: "dateStart") ?? dateStart)")
+        
+        // MARK: - Date end
+        var dateEndDebug = DateComponents()
+        dateEndDebug.day = 1 // make +1 day
+        dateEndDebug.month = 1
+        dateEndDebug.year = 2023
+        
+        let endDate: Date = userCalendar.date(from: dateEndDebug)!
+        print("end date -------- \(endDate)")
+        
+        progress.setValue(userCalendar.startOfDay(for: endDate), forKey: "dateEnd")
+        print("\(progress.value(forKey: "dateEnd") ?? dateEnd)")
+        
+        if progressObjects.isEmpty {
+            progress.setValue(1, forKey: "order")
+        } else {
+            progress.setValue((progressObjects.count) + 1, forKey: "order")
+        }
+        
+        do  {
+            progressObjects.insert(progress, at: 0)
+            try managedContext.save()
+            progressTV.reloadData()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
     
     
-//    func fetchData() {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//        let viewContext       = appDelegate.persistentContainer.viewContext
-//        let fetchRequest      = NSFetchRequest<NSManagedObject>(entityName: "Progress")
-//        let sort              = NSSortDescriptor(key: "order", ascending: false)
-//        fetchRequest.sortDescriptors = [sort]
-//
-//        do {
-//            progressObjects = try viewContext.fetch(fetchRequest)
-//            // sortGroupsByNumber(groups)
-//        } catch let error as NSError {
-//            print("Couldn't fetch. \(error), \(error.userInfo)")
-//        }
-//    }
+    func fetchData() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let viewContext       = appDelegate.persistentContainer.viewContext
+        let fetchRequest      = NSFetchRequest<NSManagedObject>(entityName: "Progress")
+        let sort              = NSSortDescriptor(key: "order", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+
+        do {
+            progressObjects = try viewContext.fetch(fetchRequest)
+            // sortGroupsByNumber(groups)
+        } catch let error as NSError {
+            print("Couldn't fetch. \(error), \(error.userInfo)")
+        }
+    }
     
 }
 
 // MARK: - progress calculating
-//extension Calendar {
-//    func calculateDaysBetween(_ from: Date, and to: Date) -> Double {
+extension Calendar {
+    func calculateDaysBetween(_ from: Date, and to: Date) -> Double {
+        let fromDate = startOfDay(for: from)
+        let toDate = startOfDay(for: to)
+
+        let numberOfDays = dateComponents([.day], from: fromDate, to: toDate)
+        print("number of days are \(numberOfDays.day! + 1)")
+        return Double(Double(numberOfDays.day!) + 1.0)
+    }
+
+//    func calculateHoursBetween(_ from: Date, and to: Date) -> Double {
 //        let fromDate = startOfDay(for: from)
 //        let toDate = startOfDay(for: to)
 //
-//        let numberOfDays = dateComponents([.day], from: fromDate, to: toDate)
-//        print("number of days are \(numberOfDays.day! + 1)")
-//        return Double(Double(numberOfDays.day!) + 1.0)
-//    }
+//        let hoursToEnd = dateComponents([.hour], from: fromDate, to: toDate)
 //
-////    func calculateHoursBetween(_ from: Date, and to: Date) -> Double {
-////        let fromDate = startOfDay(for: from)
-////        let toDate = startOfDay(for: to)
-////
-////        let hoursToEnd = dateComponents([.hour], from: fromDate, to: toDate)
-////
-////        return Double(hoursToEnd.hour!)
-////    }
-//}
-//
-//func calculateForCircle(_ timeToEnd: Double) -> Double {
-//    // let end = 1
-//    var value: Double = 0.1
-//    if timeToEnd <= 9 {
-//        print("Time to end is \(timeToEnd)")
-//        value = (Double(timeToEnd) / 10)
-//        print(value)
-//        return value
-//    } else if timeToEnd <= 99 {
-//        value = (Double(timeToEnd) / 100)
-//        print(value)
-//        return value
-//    } else if timeToEnd <= 999 {
-//        value = (Double(timeToEnd) / 1000)
-//        print(value)
-//        return value
-//    } else {
-//        print("damn, that's too much...")
-//        return value
+//        return Double(hoursToEnd.hour!)
 //    }
-//}
+}
+
+func calculateForCircle(_ timeToEnd: Double) -> Double {
+    // let end = 1
+    var value: Double = 0.1
+    if timeToEnd <= 9 {
+        print("Time to end is \(timeToEnd)")
+        value = (Double(timeToEnd) / 10)
+        print(value)
+        return value
+    } else if timeToEnd <= 99 {
+        value = (Double(timeToEnd) / 100)
+        print(value)
+        return value
+    } else if timeToEnd <= 999 {
+        value = (Double(timeToEnd) / 1000)
+        print(value)
+        return value
+    } else {
+        print("damn, that's too much...")
+        return value
+    }
+}
 
 // MARK: - ScrollView
 //        scrollView.bounces                      = true

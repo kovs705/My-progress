@@ -69,7 +69,7 @@ class progressTVC: UITableViewCell {
             make.top.equalTo(20)
             make.bottom.equalTo(-20)
             make.width.equalTo(60)
-            // make.height.equalTo(50)
+            make.height.equalTo(60)
         }
         
         progressName.snp.makeConstraints { (make) -> Void in
@@ -81,16 +81,16 @@ class progressTVC: UITableViewCell {
         }
         
         // MARK: - Circle progress view
-        let center = progress.center
+        // let center = backView.center
         
-        progress.backgroundColor = .black
+        progress.backgroundColor = .clear
         
         // configuring..
-        backView.backgroundColor = .red
+        backView.backgroundColor = .clear
         backView.frame.size = CGSize(width: 60, height: 60)
-        backView.frame.origin = CGPoint(x: 30, y: 30)
+        backView.frame.origin = CGPoint(x: 0, y: 0)
         
-        let circularPathForProgressView = UIBezierPath(arcCenter: center, radius: 35, startAngle: startPoint, endAngle: endPoint, clockwise: true)
+        let circularPathForProgressView = UIBezierPath(arcCenter: CGPoint(x: 30, y: 30), radius: 35, startAngle: startPoint, endAngle: endPoint, clockwise: true)
         
         circleLayer.path = circularPathForProgressView.cgPath
         circleLayer.strokeColor = UIColor(named: "Cloud")?.cgColor

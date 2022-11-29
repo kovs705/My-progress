@@ -26,6 +26,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // let secondVC = AddProgressVC()
+        // secondVC.delegate = self
+        
         // MARK: - Navigation
         let addProgressBarButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addProgress))
         self.navigationItem.rightBarButtonItem = addProgressBarButton
@@ -190,9 +193,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @objc func openVCToAddProgress(sender: UIButton!) {
         print("Floating button clicked!")
         // self.navigationController?.pushViewController(AddProgressVC(), animated: true)
+//         let addProgressViewConrtoller = AddProgressVC()
+//         addProgressViewConrtoller.delegate = self
         self.navigationController?.showDetailViewController(AddProgressVC(), sender: sender)
     }
     
+    // MARK: - addProgress()
     @objc func addProgress() {
         let alert = UIAlertController(title: "New group", message: "Enter a name for the group", preferredStyle: .alert)
         
@@ -274,7 +280,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    
+    // MARK: - fetchData()
     func fetchData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let viewContext       = appDelegate.persistentContainer.viewContext
@@ -287,6 +293,55 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             // sortGroupsByNumber(groups)
         } catch let error as NSError {
             print("Couldn't fetch. \(error), \(error.userInfo)")
+        }
+    }
+    
+    
+    // MARK: Create a new Progress:
+    func createNewProgress(name: String, dateEnd: Date, value: Int, progress: Int) {
+        // code to add a new progress:
+        print("added ")
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Progress", in: managedContext)!
+        let progress = NSManagedObject(entity: entity, insertInto: managedContext)
+        
+        progress.setValue(name, forKey: "name")
+        
+        progress.setValue(value, forKey: "value")
+        progress.setValue(progress, forKey: "progress")
+        
+        
+        progress.setValue(userCalendar.startOfDay(for: Date()), forKey: "dateStart")
+        print("start date --------\(progress.value(forKey: "dateStart") ?? dateStart)")
+        
+        // get the dateComponents from the Date()
+        // var components = userCalendar.dateComponents([.day, .month, .year], from: dateEnd)
+        
+        print("end date --------- \(dateEnd)")
+        
+        progress.setValue(userCalendar.startOfDay(for: dateEnd), forKey: "dateEnd")
+        
+        print("\(progress.value(forKey: "dateEnd") ?? Date())")
+        
+        if progressObjects.isEmpty {
+            progress.setValue(1, forKey: "order")
+        } else {
+            progress.setValue((progressObjects.count) + 1, forKey: "order")
+        }
+        
+        print("\(name), \(dateEnd), \(value), \(progress)")
+        
+        do  {
+            progressObjects.insert(progress, at: 0)
+            try managedContext.save()
+            progressTV.reloadData()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     

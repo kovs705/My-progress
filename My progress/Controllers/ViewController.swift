@@ -20,7 +20,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var progressObjects: [NSManagedObject] = []
     let userCalendar = Calendar.current
     
-    var dateEnd = DateComponents()
+    // var dateEnd = DateComponents()
     var dateStart = DateComponents()
     
     override func viewDidLoad() {
@@ -38,9 +38,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         fetchData()
         
-        dateEnd.day = 1
-        dateEnd.month = 12
-        dateEnd.year = 2022
+//        dateEnd.day = 5
+//        dateEnd.month = 05
+//        dateEnd.year = 2023
 
         dateStart.day = 1
         dateStart.month = 1
@@ -106,6 +106,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         floatingButton.addTarget(self, action: #selector(openVCToAddProgress), for: .touchUpInside)
         
         print("\(progressObjects.count)")
+        
+        createNewProgress(name: "Test", dateEnd: userCalendar.startOfDay(for: Date()))
         
     }
     
@@ -263,7 +265,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         print("end date -------- \(endDate)")
         
         progress.setValue(userCalendar.startOfDay(for: endDate), forKey: "dateEnd")
-        print("\(progress.value(forKey: "dateEnd") ?? dateEnd)")
+        // print("\(progress.value(forKey: "dateEnd") ?? dateEnd)")
         
         if progressObjects.isEmpty {
             progress.setValue(1, forKey: "order")
@@ -298,7 +300,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     // MARK: Create a new Progress:
-    func createNewProgress(name: String, dateEnd: Date, value: Int, progress: Int) {
+    func createNewProgress(name: String, dateEnd: Date) {
+        // code to add a new progress:
         // code to add a new progress:
         print("added ")
         
@@ -307,34 +310,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
+        
         let entity = NSEntityDescription.entity(forEntityName: "Progress", in: managedContext)!
+        
         let progress = NSManagedObject(entity: entity, insertInto: managedContext)
         
         progress.setValue(name, forKey: "name")
+        progress.setValue(1, forKey: "value")
+        progress.setValue(0, forKey: "progress")
+        // progress.setValue((progressObjects.count ?? 0) + 1, forKey: "order")
         
-        progress.setValue(value, forKey: "value")
-        progress.setValue(progress, forKey: "progress")
-        
-        
+        // MARK: - Date start
         progress.setValue(userCalendar.startOfDay(for: Date()), forKey: "dateStart")
         print("start date --------\(progress.value(forKey: "dateStart") ?? dateStart)")
         
-        // get the dateComponents from the Date()
-        // var components = userCalendar.dateComponents([.day, .month, .year], from: dateEnd)
-        
-        print("end date --------- \(dateEnd)")
+        // MARK: - Date end
+//        var dateEndDebug = DateComponents()
+//        dateEndDebug.day = 1 // make +1 day
+//        dateEndDebug.month = 1
+//        dateEndDebug.year = 2023
+//
+//        let endDate: Date = userCalendar.date(from: dateEndDebug)!
+//        print("end date -------- \(endDate)")
         
         progress.setValue(userCalendar.startOfDay(for: dateEnd), forKey: "dateEnd")
-        
-        print("\(progress.value(forKey: "dateEnd") ?? Date())")
+        print("\(progress.value(forKey: "dateEnd") ?? dateEnd)")
         
         if progressObjects.isEmpty {
             progress.setValue(1, forKey: "order")
         } else {
             progress.setValue((progressObjects.count) + 1, forKey: "order")
         }
-        
-        print("\(name), \(dateEnd), \(value), \(progress)")
         
         do  {
             progressObjects.insert(progress, at: 0)

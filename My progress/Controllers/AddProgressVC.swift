@@ -124,7 +124,7 @@ class AddProgressVC: UIViewController {
         saveButton.addAction(UIAction(title: "Save", handler: { [self] _ in
             guard let words = nameField.text else { return }
             print("\(words), \(datePickerEnd.date)")
-            mainVC.createNewProgress(name: words, dateEnd: datePickerEnd.date, value: 1, progress: 0)
+            // mainVC.createNewProgress(name: words, dateEnd: datePickerEnd.date, value: 1, progress: 0)
             print("wow")
             dismiss(animated: true)
         }), for: .touchUpInside)

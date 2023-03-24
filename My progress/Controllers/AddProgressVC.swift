@@ -60,71 +60,21 @@ class AddProgressVC: UIViewController {
         scrollPage.placeScrollPage(view: view)
         
         stackView.placeStackView(view: view, scrollPage: scrollPage)
-
-        // self.view = view
         
         
+        createSkelet(stackView)
         
-        // MARK: - stack's pbjects:
-        for _ in 0..<2 {
-            let circle = UIView()
-            let label = UILabel()
-            
-            circle.translatesAutoresizingMaskIntoConstraints = true
-            label.translatesAutoresizingMaskIntoConstraints = false
-            
-            label.text = "Hello world!"
-            label.textColor = .white
-            
-            circle.snp.makeConstraints { (circle) -> Void in
-                circle.width.equalTo(150)
-                circle.height.equalTo(50)
-            }
-            // circle.heightAnchor.constraint(equalToConstant: 50).isActive = true
-            // circle.widthAnchor.constraint(equalToConstant: 50).isActive = true
-            
-            circle.backgroundColor = .gray
-            circle.layer.cornerRadius = 24
-            circle.addSubview(label)
-            
-            label.snp.makeConstraints { (lab) -> Void in
-                lab.centerX.equalTo(circle)
-                lab.centerY.equalTo(circle)
-            }
-            
-            stackView.addArrangedSubview(circle)
-        }
+        configurePicker(picker: datePickerStart, date: dateStart, stackView: stackView, type: true)
         
-        // MARK: - Date picker start
-        datePickerStart.tintColor = .red
-        datePickerStart.datePickerMode = .date
-        datePickerStart.setDate(dateStart, animated: true)
+        configurePicker(picker: datePickerEnd, date: dateEnd, stackView: stackView, type: false)
         
-        stackView.addArrangedSubview(datePickerStart)
-        
-        // MARK: - Date picker end
-        datePickerEnd.tintColor = .blue
-        datePickerEnd.setDate(dateEnd, animated: true)
-        datePickerEnd.datePickerMode = .date
-        
-        stackView.addArrangedSubview(datePickerEnd)
-        
-        // MARK: - TextField for name
-        nameField.placeholder = "My Progress name"
-        nameField.borderStyle = .roundedRect
-        nameField.backgroundColor = UIColor.white
-        nameField.font = .systemFont(ofSize: 17, weight: .heavy)
-        
-        stackView.addArrangedSubview(nameField)
-        
-        // MARK: - Note view
+        configureNameField(nameField, stackView)
         
         // MARK: - Save Button
         saveButton.setTitle("Save", for: .normal)
         saveButton.addAction(UIAction(title: "Save", handler: { [self] _ in
-            guard let words = nameField.text else { return }
-            print("\(words), \(datePickerEnd.date)")
-            // mainVC.createNewProgress(name: words, dateEnd: datePickerEnd.date, value: 1, progress: 0)
+            guard let nameOfProgress = nameField.text else { return }
+            mainVC.createNewProgress(name: nameOfProgress, dateEnd: datePickerEnd.date + 1, dateStart: datePickerStart.date + 1)
             print("wow")
             dismiss(animated: true)
         }), for: .touchUpInside)
@@ -134,4 +84,58 @@ class AddProgressVC: UIViewController {
     }
     // end of viewDidLoad()
     
+}
+
+
+// MARK: - TextFields
+func configureNameField(_ nameField: UITextField, _ stackView: UIStackView) {
+    nameField.placeholder = "My Progress name"
+    nameField.borderStyle = .roundedRect
+    nameField.backgroundColor = UIColor.white
+    nameField.font = .systemFont(ofSize: 17, weight: .heavy)
+    
+    stackView.addArrangedSubview(nameField)
+}
+
+
+// MARK: - Pickers
+func configurePicker(picker: UIDatePicker, date: Date, stackView: UIStackView, type: Bool) { // start - true
+    picker.tintColor = type ? .red : .blue
+    picker.datePickerMode = .date
+    picker.setDate(date, animated: true)
+    
+    stackView.addArrangedSubview(picker)
+}
+
+
+// MARK: - Two placeholders on top
+func createSkelet(_ stackView: UIStackView) {
+    for _ in 0..<2 {
+        let circle = UIView()
+        let label = UILabel()
+        
+        circle.translatesAutoresizingMaskIntoConstraints = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.text = "Hello world!"
+        label.textColor = .white
+        
+        circle.snp.makeConstraints { (circle) -> Void in
+            circle.width.equalTo(150)
+            circle.height.equalTo(50)
+        }
+        // circle.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        // circle.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        circle.backgroundColor = .gray
+        circle.layer.cornerRadius = 24
+        circle.addSubview(label)
+        
+        label.snp.makeConstraints { (lab) -> Void in
+            lab.centerX.equalTo(circle)
+            lab.centerY.equalTo(circle)
+        }
+        
+        stackView.addArrangedSubview(circle)
+    }
 }
